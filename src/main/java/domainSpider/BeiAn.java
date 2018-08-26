@@ -47,6 +47,7 @@ class Task extends TimerTask {
 
 		// print(content);
 		String token = getToken(content);
+		content = null;
 		// print(token);
 
 		String newUri = "http://www.beian.gov.cn/portal/recordShow?token=" + token;
@@ -55,6 +56,7 @@ class Task extends TimerTask {
 
 		// print(newContent);
 		resolveBeiAnContent(newContent);
+		newContent = null;
 	}
 
 	public String cookieStr = "";
@@ -74,6 +76,7 @@ class Task extends TimerTask {
 				String cookieVal = getCookie(h.getValue());
 				// print(cookieVal);
 				builder.append(cookieVal + ";");
+				cookieVal = null;
 			}
 			cookieStr = builder.toString();
 

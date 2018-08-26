@@ -51,7 +51,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<!-- 我运行这个jar所运行的主类 -->
+							<!-- 我运行这个jar所运行的主类  mvn build的时候输入的是 assembly:assembly-->
 							<mainClass>domainSpider.BeiAn</mainClass>
 						</manifest>
 					</archive>
