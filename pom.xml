@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sqber</groupId>
-	<artifactId>youdaoSpider</artifactId>
+	<artifactId>domainSpider</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<dependencies>
@@ -17,12 +17,6 @@
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpmime</artifactId>
 			<version>4.5.5</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>fastjson</artifactId>
-			<version>1.2.32</version>
 		</dependency>
 
 		<dependency>
@@ -57,8 +51,8 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<!-- 我运行这个jar所运行的主类 mvn build的时候输入的是 assembly:assembly -->
-							<mainClass>youdaoSpider.BeiAn</mainClass>
+							<!-- 我运行这个jar所运行的主类  mvn build的时候输入的是 assembly:assembly-->
+							<mainClass>domainSpider.BeiAn</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>
