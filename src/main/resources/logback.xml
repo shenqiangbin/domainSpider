@@ -29,7 +29,7 @@
 			<pattern>${PATTERN}</pattern>
 		</layout>
 	</appender>
-	<appender name="DB"
+	<!--  <appender name="DB"
 		class="ch.qos.logback.classic.db.DBAppender">
 		<connectionSource
 			class="ch.qos.logback.core.db.DataSourceConnectionSource">
@@ -42,8 +42,8 @@
 				<password>${password}</password>
 			</dataSource>
 		</connectionSource>
-	</appender>
-	<logger name="com.zaxxer.hikari" level="ERROR" />
+	</appender>-->
+	<logger name="com.zaxxer.hikari" level="ERROR" /> 
 	<root level="INFO">
 		<appender-ref ref="PROD_FILE" />
 		<!-- <appender-ref ref="DB" /> -->
