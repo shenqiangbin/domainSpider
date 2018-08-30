@@ -261,8 +261,8 @@ public class QuartzDemoJob implements Job {
 		HikariDataSource dataSource = null;
 		Connection connection = null;
 		try {
-			/* HikariDataSource 是需要关闭的 */
-			dataSource = getDataSource();
+			/* 将DataSource修改为单例模式，且不close */
+			dataSource = DataSource.getInstance();
 			connection = dataSource.getConnection();
 
 			Statement statement = connection.createStatement();
@@ -284,8 +284,6 @@ public class QuartzDemoJob implements Job {
 		} finally {
 			if (connection != null && !connection.isClosed())
 				connection.close();
-			if (dataSource != null && !dataSource.isClosed())
-				dataSource.close();
 		}
 
 	}
@@ -294,17 +292,5 @@ public class QuartzDemoJob implements Job {
 		System.out.println(obj);
 	}
 
-	private HikariDataSource getDataSource() throws SQLException {
-
-		HikariConfig config = new HikariConfig();
-
-		config.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/javablog?useUnicode=true&characterEncoding=utf8&useSSL=false");
-		config.setUsername("root");
-		config.setPassword("123456");
-		config.addDataSourceProperty("cachePrepStmts", "true");
-		config.addDataSourceProperty("prepStmtCacheSize", "250");
-		config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
-
-		return new HikariDataSource(config);
-	}
+	
 }
