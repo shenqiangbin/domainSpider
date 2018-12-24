@@ -9,25 +9,34 @@
 	<!-- pro文件路径 -->
 	<property name="PRO_FILE_PATH" value="./log.txt" />
 
-	<property name="serverName" value="127.0.0.1" />
+<!-- 	<property name="serverName" value="127.0.0.1" />
 	<property name="port" value="3306" />
 	<property name="dbName" value="logdb" />
 	<property name="user" value="root" />
-	<property name="password" value="123456" />
+	<property name="password" value="123456" /> -->
 
 	<appender name="PROD_FILE"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${PRO_FILE_PATH}</file>
-		<rollingPolicy
-			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${PRO_FILE_PATH}/warn.%d{yyyy-MM-dd}.log
-			</fileNamePattern>
-			<MaxHistory>100</MaxHistory>
-			<totalSizeCap>20MB</totalSizeCap>
+		<file>logFile.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!--
+			yyyy-MM-dd_HH-mm  : 每分钟滚动一次
+			yyyy-MM-dd  : 每天滚动一次
+			%d{yyyy-MM,aux} 是按月份文件夹归档
+			-->
+			<fileNamePattern>./logFile/%d{yyyy-MM,aux}/%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxFileSize>5MB</maxFileSize>
+			<!-- keep 30 days' worth of history capped at 3GB total size -->
+			<maxHistory>30</maxHistory>
+			<totalSizeCap>3GB</totalSizeCap>
 		</rollingPolicy>
-		<layout class="ch.qos.logback.classic.PatternLayout">
-			<pattern>${PATTERN}</pattern>
-		</layout>
+		<encoder>
+			<pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+		</encoder>
+		<!--日志文件最大的大小 -->
+		<!--<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">-->
+			<!--<MaxFileSize>1MB</MaxFileSize>-->
+		<!--</triggeringPolicy>-->
 	</appender>
 	<!--  <appender name="DB"
 		class="ch.qos.logback.classic.db.DBAppender">
